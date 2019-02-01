@@ -1,0 +1,41 @@
+{
+  "name": "maxwell",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Aerlinger/maxwell",
+  "authors": [
+    "Anthony Erlinger (@aerlinger)"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "^3.5.15",
+    "lodash": "*",
+    "rickshaw": "1.6.0",
+    "sketch.js": "*",
+    "semantic": "semantic-ui#^2.1.8",
+    "jquery-ui": "^1.11.4"
+  },
+  "devDependencies": {
+    "jquery": "*",
+    "coffee-script": "1.8.0",
+    "chai": "2.1.0",
+    "chai-fuzzy": "*",
+    "mocha": "~1.15.1",
+    "should": "4.3.0",
+    "sinonjs": "~1.7.3",
+    "dat.gui": "*",
+    "bootstrap": "~3.3.2",
+    "foundation-sites": "^6.3.0",
+    "jquery-ui": "jquery.ui#^1.12.1",
+    "Flot": "flot#^0.8.3",
+    "c3": "^0.4.11",
+    "moment": "^2.17.1",
+    "d3-shape": "^1.0.4"
+  }
+}

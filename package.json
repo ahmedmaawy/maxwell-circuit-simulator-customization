@@ -1,0 +1,80 @@
+{
+  "name": "Maxwell",
+  "description": "Maxwell Circuit Simulator",
+  "version": "0.0.3",
+  "main": "src/Maxwell.js",
+  "private": true,
+  "license": "MIT",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "d3": "~3.5.5",
+    "dotenv": "^2.0.0",
+    "express": "4.13.3",
+    "glob": "*",
+    "jade": "~0.26.3",
+    "jquery": "^3.1.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-bundle": "^1.11.4",
+    "jquery-ui-dist": "^1.12.1",
+    "json-loader": "^0.5.4",
+    "lodash": "4.1.0",
+    "rickshaw": "1.6.0",
+    "smoothie": "^1.27.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.0",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.3.2",
+    "babel-polyfill": "^6.3.14",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-stage-0": "^6.5.0",
+    "bower": "~1.3.0",
+    "canvas": "1.6.2",
+    "chai": "3.5.0",
+    "chai-as-promised": "5.2.0",
+    "coffee-loader": "^0.7.2",
+    "coffee-script": "~1.8.0",
+    "colors": "*",
+    "connect": "^3.4.0",
+    "d3": "^4.5.0",
+    "d3-shape": "^1.0.4",
+    "debug": "^2.2.0",
+    "deep-diff": "0.3.3",
+    "destroy": "^1.0.3",
+    "eslint": "^3.0.0",
+    "foundation-sites": "^6.3.0",
+    "globby": "^6.1.0",
+    "gm": "^1.23.0",
+    "http-errors": "^1.3.1",
+    "jsondiffpatch": "0.1.38",
+    "mocha": "^3.2.0",
+    "mongodb": "^2.2.22",
+    "node-resemble-js": "^0.2.0",
+    "node-sass-middleware": "^0.11.0",
+    "performance-now": "^2.0.0",
+    "resemblejs": "^2.2.3",
+    "sass-loader": "^4.1.1",
+    "should": "^7.1.1",
+    "sinon": "~1.6.0",
+    "tiny-lr": "^0.2.1",
+    "watchify": "^3.6.1",
+    "webdriverio": "^4.6.2",
+    "webpack": "^1.14.0",
+    "winston": "2.1.1"
+  },
+  "scripts": {
+    "test": "mocha -w --compilers coffee:coffee-script/register",
+    "start": "node app/app.js",
+    "benchmark": "node --prof scripts/node-benchmark.js",
+    "lint": "eslint ./src",
+    "build": "webpack --config webpack.config.js"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  }
+}

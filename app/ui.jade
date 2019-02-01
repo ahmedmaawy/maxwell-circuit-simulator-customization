@@ -1,0 +1,239 @@
+extends ./layout
+
+block header
+  link(rel="stylesheet", href="/ui.css")
+  link(rel="stylesheet", href="/foundation/css/app.css")
+
+  script(type="text/javascript", src="/bower_components/foundation-sites/dist/js/foundation.js")
+  script(type="text/javascript", src="/bower_components/smoothie/smoothie.js")
+
+  script.
+    function isLetter(str) {
+      return str.length === 1 && str.match(/[a-z]/i);
+    }
+
+    function bindKeyEvents(circuitContext) {
+      document.addEventListener('keydown', function (event) {
+        var charCode = String.fromCharCode(event.which);
+        var keycode = isLetter(charCode) ? charCode : event.which;
+
+        switch (keycode) {
+          case "W":
+            console.log("WireElm");
+            circuitContext.setPlaceComponent("WireElm");
+            break;
+          case 'R':
+            circuitContext.setPlaceComponent("ResistorElm");
+            break;
+          case 'G':
+            circuitContext.setPlaceComponent("GroundElm");
+            break;
+          case 'S':
+            circuitContext.setPlaceComponent("SwitchElm");
+            break;
+          case 'C':
+            circuitContext.setPlaceComponent("CapacitorElm");
+            break;
+          case 'I':
+            circuitContext.setPlaceComponent("InductorElm");
+            break;
+          case 'V':
+            circuitContext.setPlaceComponent("VoltageElm");
+            break;
+          case 'A':
+            circuitContext.setPlaceComponent("RailElm");
+            break;
+          case 'O':
+            circuitContext.setPlaceComponent("OpAmpElm");
+            break;
+          case "D":
+            circuitContext.setPlaceComponent("DiodeElm");
+            break;
+          case "T":
+            circuitContext.setPlaceComponent("TransistorElm");
+            break;
+          case "M":
+            circuitContext.setPlaceComponent("MosfetElm");
+            break;
+          case "Q":
+            circuitContext.clearPlaceComponent();
+            break;
+
+            // ESC
+          case 27:
+            circuitContext.resetSelection();
+            break;
+
+            // Backspace
+          case 8:
+            if (document.activeElement && document.activeElement.constructor.name != "HTMLInputElement") {
+              circuitContext.remove(circuitContext.getSelectedComponents());
+            }
+            break;
+
+            // Space
+          case 32:
+            circuitContext.togglePause();
+            break;
+        }
+      })
+    }
+
+    function bindCircuitEvents(circuitContext) {
+      circuitContext.onSelectionChanged = function (changeObj) {
+        console.log("SELECTION CHANGED:", changeObj);
+
+        if (changeObj.selection.length == 0) {
+          $("#edit_component_pane").foundation('close');
+        }
+      };
+
+      circuitContext.onComponentHover = function (component) {
+        console.log("ON COMPONENT HOVER:", component.toString(), "V:", component.volts);
+        var form = renderEdit(component);
+
+        console.log("renderEdit\n", form);
+
+        window.editInfo = form;
+      };
+
+      circuitContext.onComponentUnhover = function (component) {
+        console.log("ON COMPONENT UNHOVER:", component.toString());
+      };
+
+      circuitContext.onComponentClick = function (component) {
+        console.log("ON COMPONENT CLICK:", component);
+
+        var form = renderEdit(component);
+        console.log("renderEdit\n", form);
+
+        document.getElementById("edit_component_pane").innerHTML = "";
+        document.getElementById("edit_component_pane").append(form);
+
+        $("#edit_component_pane").foundation('open');
+      };
+
+      circuitContext.onComponentsDrag = function (components) {
+        console.log("ON COMPONENTS DRAG:", components);
+      };
+
+      circuitContext.onNodeHover = function (node) {
+        console.log("NODE HOVER: ", node.getVoltage());
+      };
+
+      circuitContext.onNodeUnhover = function (node) {
+        console.log("NODE UNHOVER: ", node.getVoltage());
+      };
+
+      circuitContext.onNodeClick = function (node) {
+        console.log("NODE CLICK: ", node.x, node.y);
+      };
+
+      circuitContext.onNodeDrag = function (node) {
+        console.log("NODE DRAG: ", node.x, node.y);
+      };
+
+      circuitContext.onUpdateComplete = function (context) {
+
+      };
+    }
+
+    $(document).ready(function() {
+      var canvas = document.getElementById('canvas');
+
+      $.ajax({
+        url: "/api/circuits/#{circuit_name}"
+      }).success(function(data, status) {
+        var circuitContext = Maxwell.createContext("#{circuit_name}", data, canvas);
+        circuitContext.run();
+
+        window.circuitContext = circuitContext;
+
+        $('.component-item').click(function (evt) {
+          var componentName = $(this).data("name");
+
+          circuitContext.setPlaceComponent(componentName);
+        });
+
+        bindCircuitEvents(circuitContext);
+        bindKeyEvents(circuitContext);
+      });
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      window.addEventListener('resize', resizeCanvas, false);
+
+      if (canvas) {
+
+        resizeCanvas();
+      }
+    });
+
+block content
+  canvas#performance_sparkline(width="200", height="40")
+  canvas#canvas.maxwell
+
+  #main_nav.top-bar.sidepanel
+    .top-bar-left
+      ul.dropdown.menu(data-dropdown-menu='', data-multi-open=false)
+        li.menu-text Maxwell
+        li
+          a(href='#') Circuit
+        li
+          a(href='#') Edit
+        li
+          a(href='#') Sample Circuits
+          ul.menu.vertical
+            - for (var example in examples)
+              li
+                a.item(href="/circuit/" + examples[example])= example
+
+    .top-bar-right
+      ul.menu
+        li
+          a(href="https://github.com/aerlinger/maxwell", target="_blank")
+            img(src="/github-icon.png", width=20, height=20)
+            | Source Code
+
+  #component_sidebar.sidepanel
+    ul#deeplinked-tabs.tabs(data-deep-link='true', data-tabs='')
+      li.tabs-title.is-active
+        a(href='#panel1d', aria-selected='true') Circuits
+      li.tabs-title
+        a(href='#panel2d') Components
+
+    .tabs-content(data-tabs-content='deeplinked-tabs')
+      #panel2d.tabs-panel
+        ul#component_list.is-active.menu.vertical(data-accordion-menu)
+          - for (var component_name in components)
+            - if(component_name && component_name[0] != "_")
+              li
+                a.item.component-item(href="#" + subcircuit, data-name=component_name)= components[component_name].NAME
+
+      #panel1d.tabs-panel.is-active
+        ul#circuit_list.is-active.menu.vertical(data-accordion-menu)
+          - for (var category in library)
+            li
+              a.item(href="/circuit/" + category)= category
+              ul.nested.vertical.menu.is-active
+                - for (var circuit in library[category])
+                  - if (typeof library[category][circuit] == "object")
+                    li
+                      a.item(href="/circuit/" + circuit)= circuit
+                      ul.nested.vertical.menu.is-active
+                        - for (var subcircuit in library[category][circuit])
+                          li
+                            a.item(href="/circuit/" + subcircuit)= library[category][circuit][subcircuit]
+
+                  - else
+                    li
+                      a.item(href="/circuit/" + circuit)= library[category][circuit]
+
+
+  #edit_component_pane.off-canvas.edit-form.position-right(data-off-canvas='')
+
+  script.
+    $(document).foundation();

@@ -1,0 +1,265 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* to remove the top and left whitespace */
+
+
+body {
+  width: 100%;
+  height: 100%;
+
+
+  background-color: #FCFCFF !important;
+  background-image:
+          linear-gradient(rgba(26, 39, 244, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(26, 39, 244, 0.08) 1px, transparent 1px),
+          linear-gradient(rgba(205, 205, 255, 0.3) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(205, 205, 255, 0.3) 1px, transparent 1px) !important;
+  background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px !important;
+}
+
+/* just to be sure these are full screen*/
+
+canvas {
+  display: block;
+}
+
+/* To remove the scrollbars */
+
+#main_nav {
+  position: relative;
+  z-index: 10;
+  border-left: 1px solid #cacaca;
+}
+
+.fieldset legend {
+  background: none !important;
+  font-weight: bold;
+  color: #666;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+ul.vertical.menu li a {
+  padding: 0.3rem !important;
+  font-size: 10px;
+}
+
+.top-bar ul.vertical.submenu li, .top-bar ul.vertical.submenu li a {
+  padding: 0 !important;
+  font-size: 10px;
+}
+
+hr.component-title-sep {
+  margin-top: 0;
+}
+
+fieldset.fieldset .slider {
+  margin-bottom: 1em;
+}
+
+.switch.tiny .switch-label {
+  color: #444;
+  position: relative;
+  bottom: 6px;
+  left: 9px;
+  font-size: 12px;
+}
+
+.param-control {
+  margin-bottom: 7px;
+}
+
+#component_sidebar {
+  width: 200px;
+  height: 100%;
+  /*float: left;*/
+  top: 0;
+  position: absolute;
+  left: 0;
+  background: #333;
+  padding: 50px 5px 5px 5px;
+  overflow: auto;
+  overflow-x: hidden;
+  z-index: 5;
+
+  border-right: 1px solid #cacaca;
+}
+
+.item.component-item {
+  font-size: 10px;
+  padding: 5px;
+}
+
+.edit-form {
+  width: 260px;
+  height: 100%;
+  /*float: left;*/
+  /*top: 0;*/
+  /*position: absolute;*/
+  /*left: 0;*/
+  background: #EEE;
+  border: 1px solid lightgray;
+  padding: 70px 10px 10px 10px;
+  overflow: auto;
+  overflow-x: hidden;
+  z-index: 5;
+}
+
+#performance_sparkline {
+  position: absolute;
+  left: 926px;
+  top: 50px;
+  z-index: 12;
+}
+
+.plot-pane {
+  position: absolute;
+  margin-top: 20px;
+  top: 50px;
+  left: 875px;
+
+  width: 300px;
+  height: 100px;
+  background-color: #DDD;
+
+  z-index: 8;
+  border: 1px solid #666;
+}
+
+.plot-pane .close-button {
+  position: absolute;
+  top: -30px;
+  right: 5px;
+}
+
+.x_ticks text, .y_ticks text, .x_ticks_d3 text, .y_ticks_d3 text {
+  font-size: 10px !important;
+  color: #335 !important;
+}
+
+.plot-label {
+  position: absolute;
+  padding-left: 3px;
+  padding-right: 3px;
+  color: #393;
+  top: -17px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: white;
+  border-top: 1px solid #333;
+  border-left: 1px solid #333;
+  border-right: 1px solid #333;
+
+  font-size: 10px;
+  font-weight: bold;
+  font-family: "Courier New";
+}
+
+.left-axis {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  font-size: 8px;
+}
+
+.left-axis text, .x_axis text {
+  font-size: 10px !important;
+  margin-left: 10px;
+
+  /*
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  */
+
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3)
+}
+
+.plot-pane .plot-context {
+  background-color: #FFF;
+  border: 1px solid #999;
+
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  top: 2px;
+  bottom: 2px;
+}
+
+.tabs-panel {
+  padding: 10px 0 !important;
+}
+
+.sidepanel::-webkit-scrollbar {
+  width: 0.3em;
+}
+
+.sidepanel::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.sidepanel::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+.slider-container input {
+  margin-top: 12px;
+}
+
+.input-group-label {
+  width: 60px !important;
+}
+
+.off-canvas {
+  position: relative;
+  z-index: 5 !important;
+}
+
+.off-canvas-content {
+  position: relative;
+  z-index: 5 !important;
+}
+
+.off-canvas-wrapper {
+  /*overflow: auto !important;*/
+}
+
+/* to show the canvas bounds */
+canvas {
+  z-index: 1;
+  position: absolute;
+  /*background: #efe;*/
+  border: none;
+}
+
+.off-canvas > ul.vertical.menu > li > a {
+  background-color: red;
+}
+
+ul.vertical.menu .title {
+  background-color: blue;
+}
+
+.is-accordion-submenu-parent > a {
+  font-size: 11px;
+  font-weight: bold;
+  border-left: 3px solid gray;
+}
+
+ul.vertical.menu li:not(.is-accordion-submenu-parent).is-accordion-submenu-item > a {
+  background-color: #333;
+}
+
+.grid {
+  background-color: #EFEFFF !important;
+}
+
+.maxwell {
+  /*background-color: #EEF !important;*/
+}
