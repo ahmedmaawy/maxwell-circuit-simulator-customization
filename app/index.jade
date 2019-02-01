@@ -148,23 +148,11 @@ block content
         .header Components
         #edit_component.menu
 
-    //#edit_sidebar.ui.bottom.sidebar.visible
-      div(style="height: 200px; border: 1px solid #FF00FF; margin-left: 150px;")
-        div(style="width: 100%; border: 1px solid #F00; padding: 5px;")
-          a.button.mini.ui.button.green Start
-          a.button.mini.ui.button.orange  Stop
-          a.button.mini.ui.button.red  Reset
-        p text
-        p text
-        p text
-        p text
-
     .pusher
       .canvas-container(style="margin-left: 300px; width: 100%;")
         canvas.maxwell(data-circuit="#{circuit}", width="1200", height="1200")
         canvas.grid(width="1200", height="1200")
         div(style="width: 300px; border: 1px solid #00F; height: 600px; display: inline-block; position: absolute;")
-          //#legend
           #plot
             #slider
             #timeline
@@ -175,11 +163,6 @@ block content
 
           form.ui.form
             h4.ui.dividing.header Simulation Settings
-
-            //.inline.field
-              .ui.slider.checkbox
-                label Toggle
-                input(type="checkbox")
 
             .inline.field
               .ui.slider.range

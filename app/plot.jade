@@ -274,51 +274,17 @@ block header
         });
       }
 
-      /*
-      setTimeout(function () {
-
-        setTimeout(function () {
-          addData();
-        }, 1000)
-      }, 1000);
-      */
-
       function update() {
         addData();
 
         setTimeout(update, 30);
       }
 
-      //update();
-      //update();
-      //update();
-
-      /*
-      var updateInterval = 20;
-      var i =7;
-
-      function update() {
-        addData(i);
-
-        i += 1;
-
-        setTimeout(update, updateInterval);
-      }
-      */
-
       window.c3chart = chart;
     }
 
     $(document).ready(function (event) {
-
-      //dygraphsDemo();
-      //c3demo();
-
       flotDemo();
-
-      // RICKSHAW
-      //rickshawDemo()
-
     });
 
 

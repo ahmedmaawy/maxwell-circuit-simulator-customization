@@ -5,7 +5,7 @@
  *
  * This function's 'this' reference is bound to the parent CircuitController
  */
-let interactionController = function (Circuit, canvas, {marginLeft=200, marginTop= 64} = {}) {
+let interactionController = function (Circuit, canvas, { marginLeft = 200, marginTop = 64 } = {}) {
   let SelectionMarquee = require('./SelectionMarquee');
 
   const ON_COMPONENT_HOVER = "ON_COMPONENT_HOVER";
@@ -29,7 +29,7 @@ let interactionController = function (Circuit, canvas, {marginLeft=200, marginTo
    *
    * @param event JS event object
    */
-  this.mousemove = function(event) {
+  this.mousemove = function (event) {
     let x = event.offsetX - marginLeft;
     let y = event.offsetY - marginTop;
 
@@ -61,18 +61,9 @@ let interactionController = function (Circuit, canvas, {marginLeft=200, marginTo
         this.marquee.reposition(x, y);
         this.allSelectedComponents = [];
 
-        //this.selectedComponents = [];
-
         for (let component of this.Circuit.getElements()) {
           if (this.marquee.collidesWithComponent(component)) {
             this.allSelectedComponents.push(component);
-
-            /*
-             if (this.selectedComponents.indexOf(component) < 0) {
-             this.selectedComponents.push(component);
-             this.onSelectionChanged(this.selectedComponents);
-             }
-             */
           }
         }
 
@@ -128,7 +119,6 @@ let interactionController = function (Circuit, canvas, {marginLeft=200, marginTo
         if (this.selectedNode) {
           for (let element of this.selectedNode.getNeighboringElements()) {
             if (element) {
-              // console.log(element);
               let post = element.getPostAt(this.selectedNode.x, this.selectedNode.y);
               if (post) {
                 post.x = this.snapX;
@@ -202,7 +192,7 @@ let interactionController = function (Circuit, canvas, {marginLeft=200, marginTo
    *
    * @param event JS event object
    */
-  this.mousedown = function(event) {
+  this.mousedown = function (event) {
     let x = event.offsetX - marginLeft;
     let y = event.offsetY - marginTop;
 
@@ -261,7 +251,7 @@ let interactionController = function (Circuit, canvas, {marginLeft=200, marginTo
    *
    * @param event JS event object
    */
-  this.mouseup = function(event) {
+  this.mouseup = function (event) {
     this.marquee = null;
     this.selectedNode = null;
 
@@ -287,7 +277,7 @@ let interactionController = function (Circuit, canvas, {marginLeft=200, marginTo
     }
   };
 
-  canvas.onmousemove =  this.mousemove.bind(this);
+  canvas.onmousemove = this.mousemove.bind(this);
   canvas.onmousedown = this.mousedown.bind(this);
   canvas.onmouseup = this.mouseup.bind(this);
 };
