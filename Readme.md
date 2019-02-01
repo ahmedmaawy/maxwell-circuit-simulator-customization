@@ -4,6 +4,10 @@ A low-level javascript circuit simulation engine designed to model, simulate, an
 
 **Demo Link:** [http://circuitlab.herokuapp.com/](http://circuitlab.herokuapp.com/)
 
+# About the repo
+
+These are my own modifications to be made into a full product from the original repo [Maxwell](https://github.com/Aerlinger/maxwell)
+
 
 ## Running the App
 
@@ -17,8 +21,8 @@ By default it runs on Port `6502`
 
 ## Special installation instructions for Windows
 
-- Install [http://ftp.gnome.org/pub/GNOME/binaries/win64/gtk+/2.22/gtk+-bundle_2.22.1-20101229_win64.zip](the 64Bit GTK) to `C:/GTK`
-- Run the [http://sourceforge.net/projects/libjpeg-turbo/files/](libJpeg) `.exe` installer
+- Install [the 64 bit GTK](http://ftp.gnome.org/pub/GNOME/binaries/win64/gtk+/2.22/gtk+-bundle_2.22.1-20101229_win64.zip) to `C:/GTK`
+- Run the [`libJpeg`](http://sourceforge.net/projects/libjpeg-turbo/files/) `.exe` installer
 
 The application will run on localhost port 6502 by default.
 
