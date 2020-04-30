@@ -14,7 +14,7 @@
     "express": "4.13.3",
     "glob": "*",
     "jade": "~0.26.3",
-    "jquery": "^3.1.1",
+    "jquery": "^3.5.0",
     "jquery-ui": "^1.12.1",
     "jquery-ui-bundle": "^1.11.4",
     "jquery-ui-dist": "^1.12.1",
