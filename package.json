@@ -21,7 +21,7 @@
     "json-loader": "^0.5.4",
     "lodash": "4.1.0",
     "rickshaw": "1.6.0",
-    "smoothie": "^1.27.0"
+    "smoothie": "^1.36.1"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
